@@ -24,8 +24,8 @@ public class PlayerUI : MonoBehaviour
         health = player.GetComponent<Health>();
         playerComponent = player.GetComponent<PlayerController>();
 
-        var postProcess = PostprocessingVolume.GetComponent<Volume>();
-        vignette = (Vignette)postProcess.profile.components.Single(v => v is Vignette);
+//        var postProcess = PostprocessingVolume.GetComponent<Volume>();
+//        vignette = (Vignette)postProcess.profile.components.Single(v => v is Vignette);
     }
 
     // Update is called once per frame
@@ -35,8 +35,8 @@ public class PlayerUI : MonoBehaviour
         deathsValue.text = playerComponent.Deaths.ToString();
         killsValue.text = playerComponent.Kills.ToString();
 
-        vignette.color.value= Color.red;
-        var ratio = 1 - health.CurrentHealth / health.MaxHealth;
-        vignette.intensity.value = Mathf.Lerp(0, maxVignetting, ratio);
+//        vignette.color.value= Color.red;
+//        var ratio = 1 - health.CurrentHealth / health.MaxHealth;
+//        vignette.intensity.value = Mathf.Lerp(0, maxVignetting, ratio);
     }
 }
