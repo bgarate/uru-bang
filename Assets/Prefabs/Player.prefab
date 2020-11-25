@@ -352,15 +352,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 10
-  CharacterController: {fileID: 2546684981077803157}
   Gravity: -9.8
-  Kills: 0
-  Deaths: 0
   GroundMask:
     serializedVersion: 2
     m_Bits: 257
   JumpSpeed: 2
-  animator: {fileID: 2546684981077803163}
+  GroundDistance: 0.1
+  Kills: 0
+  Deaths: 0
 --- !u!143 &2546684981077803157
 CharacterController:
   m_ObjectHideFlags: 0
@@ -410,14 +409,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b97f8edac7f1a4195436b10a0efd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
   CurrentHealth: 0
-  explosion: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
-  playerController: {fileID: 0}
-  destroyAfter: 0
+  MaxHealth: 100
   RecoverySpeed: 10
   RecoveryTimeout: 5
-  lastDamage: 0
+  DestroyAfterZeroHealth: 0
+  explosion: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c, type: 3}
 --- !u!1 &2546684981724756425
 GameObject:
   m_ObjectHideFlags: 0

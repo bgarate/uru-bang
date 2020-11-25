@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UruPlayerController : MonoBehaviour
@@ -12,18 +13,20 @@ public class UruPlayerController : MonoBehaviour
 
     private CharacterController characterController;
     private Animator animator;
+    private List<GameObject> respawnPositions;
+    private Health health;
 
     private bool isGrounded;
     private float speedY;
 
-    // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = gameObject.GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        respawnPositions = GameObject.FindGameObjectsWithTag("Respawn").ToList();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         isGrounded = Physics.SphereCast(transform.position, characterController.radius, Vector3.down,
@@ -49,12 +52,13 @@ public class UruPlayerController : MonoBehaviour
         var movement = new Vector3();
 
         movement += (forward + right) * MovementSpeed * Time.deltaTime;
-        movement.y += speedY * Time.deltaTime;
 
+        movement.y += speedY * Time.deltaTime;
         characterController.Move(movement);
 
         animator.SetFloat("X", horizontal);
         animator.SetFloat("Y", vertical);
 
     }
+
 }
