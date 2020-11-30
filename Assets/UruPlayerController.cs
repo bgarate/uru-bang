@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UruPlayerController : MonoBehaviour
+public class UruPlayerController : MonoBehaviour, IKiller
 {
+    [HideInInspector]
+    public int Kills = 0;
+    [HideInInspector]
+    public int Deaths = -1;
+
     public float MovementSpeed = 10;
     public float Gravity = -9.8f;
     public LayerMask GroundMask;
@@ -14,7 +19,7 @@ public class UruPlayerController : MonoBehaviour
     private CharacterController characterController;
     private Animator animator;
     private List<GameObject> respawnPositions;
-    private Health health;
+    private UruHealth health;
 
     private bool isGrounded;
     private float speedY;
@@ -24,7 +29,23 @@ public class UruPlayerController : MonoBehaviour
         characterController = gameObject.GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         respawnPositions = GameObject.FindGameObjectsWithTag("Respawn").ToList();
+        health = GetComponent<UruHealth>();
+        health.NotifiyHit += OnHit;
+    }
 
+    void Kill()
+    {
+        Kills++;
+    }
+
+    public void NotifyKill(GameObject gameObject)
+    {
+        Kill();
+    }
+
+
+    private void OnHit(GameObject obj)
+    {
     }
 
     void Update()
@@ -61,4 +82,7 @@ public class UruPlayerController : MonoBehaviour
 
     }
 
+    public void NotifyDeath(UruHealth health, IKiller killer)
+    {
+    }
 }
