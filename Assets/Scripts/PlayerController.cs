@@ -11,9 +11,7 @@ public class PlayerController : MonoBehaviour, IKiller
     public float JumpSpeed = 5;
     public float GroundDistance = 0.1f;
 
-    [HideInInspector]
     public int Kills = 0;
-    [HideInInspector]
     public int Deaths = -1;
 
     private CharacterController characterController;
